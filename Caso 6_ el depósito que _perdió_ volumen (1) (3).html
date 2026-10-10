@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Caso 6: el depósito que "perdió" volumen</title>
+<style>
+:root{--bg:#fbfaf6;--fg:#1d1d1b;--mut:#5c5b55;--card:#f0eee6;--y:#f5b800;--r:#c0392b;--rb:#fbe3df;--g:#0f7a5c;--gb:#d9f2e8;--ln:#d9d6ca;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17170f;--fg:#f4f2e8;--mut:#b9b6a6;--card:#24241a;--y:#f5b800;--r:#ff8a7a;--rb:#4a2420;--g:#5fd3a8;--gb:#0f3a2d;--ln:#3a3a2c}}
+:root[data-theme="dark"]{--bg:#17170f;--fg:#f4f2e8;--mut:#b9b6a6;--card:#24241a;--y:#f5b800;--r:#ff8a7a;--rb:#4a2420;--g:#5fd3a8;--gb:#0f3a2d;--ln:#3a3a2c}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:"Trebuchet MS","Segoe UI",Helvetica,Arial,sans-serif;display:flex;flex-direction:column}
+.deck{flex:1;position:relative;overflow:hidden;min-height:0}
+.s{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:4vh 7vw;overflow-y:auto}
+.s.on{display:flex}
+.band{position:absolute;left:0;top:0;bottom:0;width:14px;background:repeating-linear-gradient(45deg,var(--y) 0 14px,var(--fg) 14px 28px)}
+h1{font-size:clamp(30px,6vw,64px);line-height:1.05;margin:0 0 .4em;font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(24px,4.4vw,46px);line-height:1.1;margin:0 0 .5em;font-weight:800}
+p{font-size:clamp(17px,2.4vw,26px);line-height:1.45;margin:.3em 0;max-width:34em}
+.m{color:var(--mut)}
+.row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:18px 0}
+.box{border-radius:12px;padding:14px 20px;background:var(--card);border:2px solid var(--ln);font-size:clamp(18px,2.8vw,32px);font-weight:700;text-align:center}
+.box small{display:block;font-size:.5em;font-weight:400;color:var(--mut);margin-top:2px}
+.bad{background:var(--rb);border-color:var(--r);color:var(--r)}
+.ok{background:var(--gb);border-color:var(--g);color:var(--g)}
+.ar{font-size:clamp(22px,3vw,36px);color:var(--mut)}
+.tag{display:inline-block;font-size:clamp(13px,1.6vw,18px);font-weight:700;padding:3px 12px;border-radius:99px;margin-bottom:6px}
+.bar{height:clamp(40px,7vh,64px);display:flex;align-items:center;padding:0 16px;font-weight:700;font-size:clamp(15px,2.2vw,26px);border-radius:8px;margin:10px 0;white-space:nowrap}
+.gh{border:2px dashed var(--r);color:var(--r);background:transparent;justify-content:center}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 7vw;border-top:1px solid var(--ln)}
+.nav button{font:inherit;font-size:15px;padding:8px 18px;border-radius:8px;border:1px solid var(--ln);background:var(--card);color:var(--fg);cursor:pointer}
+.nav button:focus-visible{outline:3px solid var(--y);outline-offset:2px}
+.dots span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--ln);margin:0 4px}
+.dots span.on{background:var(--y)}
+.two{display:flex;gap:4vw;align-items:center;flex-wrap:wrap}
+.cv{flex:1 1 280px;max-width:440px}
+.tx{flex:1 1 300px}
+.cv svg{width:100%;height:auto;display:block}
+.tag.bad{background:var(--rb);color:var(--r)}
+.tag.ok{background:var(--gb);color:var(--g)}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<section class="s on"><div class="band"></div>
+<p class="m">Caso 6</p>
+<h1>El depósito que "perdió" volumen</h1>
+<p>Una obra pidió 450 yd³ de material. El almacén trabaja en m³.</p>
+<div class="row"><div class="box">450 yd³</div><span class="ar">→</span><div class="box">¿cuántos m³?</div></div>
+</section>
+
+<section class="s"><div class="band"></div>
+<h2>¿Qué pasó?</h2>
+<div class="row"><div class="box">Pedido<small>450 yd³</small></div><span class="ar">→</span><div class="box bad">Encargado<small>450 × 0,9144</small></div><span class="ar">→</span><div class="box bad">Registro<small>411,48 m³</small></div></div>
+<p>El encargado usó <b>1 yd = 0,9144 m</b>. Ese factor sirve para medir longitudes, no volúmenes.</p>
+</section>
+
+<section class="s"><div class="band"></div>
+<span class="tag ok">Paso 1 de 3</span>
+<div class="two"><div class="cv" data-fw="1" data-fh="1" data-fd="1" data-c="g" data-l="1 yd|1 yd|1 yd" data-k="n|n|n"></div><div class="tx"><h2>Un cubo de 1 yd³</h2><p>Tiene tres aristas: largo, ancho y alto. Cada una mide <b>1 yd</b>.</p><p>Volumen: 1 × 1 × 1 = <b>1 yd³</b></p></div></div>
+</section>
+
+<section class="s"><div class="band"></div>
+<span class="tag bad">Paso 2 de 3</span>
+<div class="two"><div class="cv" data-fw="0.9144" data-fh="1" data-fd="1" data-c="r" data-ghost="1" data-l="0,9144 m|1 yd|1 yd" data-k="g|r|r"></div><div class="tx"><h2>Lo que hizo el encargado</h2><p>Convirtió <b>una sola arista</b>: 1 yd = 0,9144 m.</p><p>Las otras dos siguen en yardas. Quedan unidades mezcladas y el resultado no es m³.</p><p class="m">Línea punteada: el cubo original.</p></div></div>
+</section>
+
+<section class="s"><div class="band"></div>
+<span class="tag ok">Paso 3 de 3</span>
+<div class="two"><div class="cv" data-fw="0.9144" data-fh="0.9144" data-fd="0.9144" data-c="o" data-ghost="1" data-l="0,9144 m|0,9144 m|0,9144 m" data-k="g|g|g"></div><div class="tx"><h2>La forma correcta</h2><p>Se convierten <b>las tres aristas</b>: 0,9144 m cada una.</p><p>0,9144 × 0,9144 × 0,9144 = <b>0,7645 m³</b></p><p>Por eso 1 yd³ = (0,9144)³ m³.</p></div></div>
+</section>
+
+</div>
+<div class="nav">
+<button id="pv" aria-label="Diapositiva anterior">Anterior</button>
+<div class="dots" id="dots"></div>
+<button id="nx" aria-label="Diapositiva siguiente">Siguiente</button>
+</div>
+<script>
+var S=document.querySelectorAll('.s'),i=0,D=document.getElementById('dots');
+D.innerHTML=Array.prototype.map.call(S,function(){return '<span></span>'}).join('');
+function r(){
+for(var k=0;k<S.length;k++){S[k].classList.toggle('on',k===i);D.children[k].classList.toggle('on',k===i)}
+document.getElementById('pv').style.visibility=i===0?'hidden':'visible';
+document.getElementById('nx').style.visibility=i===S.length-1?'hidden':'visible';
+}
+function go(d){i=Math.max(0,Math.min(S.length-1,i+d));r()}
+document.getElementById('pv').onclick=function(){go(-1)};
+document.getElementById('nx').onclick=function(){go(1)};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' ')go(1);if(e.key==='ArrowLeft')go(-1)});
+var CO={g:['var(--card)','var(--ln)','color-mix(in srgb,var(--fg) 15%,var(--card))','var(--mut)'],r:['var(--rb)','color-mix(in srgb,var(--r) 25%,var(--rb))','color-mix(in srgb,var(--r) 45%,var(--rb))','var(--r)'],o:['var(--gb)','color-mix(in srgb,var(--g) 25%,var(--gb))','color-mix(in srgb,var(--g) 45%,var(--gb))','var(--g)']};
+var KC={n:'var(--fg)',g:'var(--g)',r:'var(--r)'};
+document.querySelectorAll('.cv').forEach(function(el){
+var S=150,w=S*el.dataset.fw,h=S*el.dataset.fh,d=S*el.dataset.fd,dx=.4*d,ox=90,oy=250,c=CO[el.dataset.c],L=el.dataset.l.split('|'),K=el.dataset.k.split('|');
+function P(a){return a.map(function(q){return q.join(',')}).join(' ')}
+function poly(a,f){return '<polygon points="'+P(a)+'" style="fill:'+f+';stroke:'+c[3]+';stroke-width:1.5"/>'}
+function tx(x,y,t,k,an){return '<text x="'+x+'" y="'+y+'" text-anchor="'+an+'" style="font-size:19px;font-weight:700;fill:'+KC[k]+'">'+t+'</text>'}
+var o='<svg viewBox="0 0 400 290" role="img" aria-label="Cubo con aristas '+L.join(', ')+'">';
+o+=poly([[ox,oy-h],[ox+dx,oy-h-dx],[ox+w+dx,oy-h-dx],[ox+w,oy-h]],c[1])+poly([[ox,oy-h],[ox+w,oy-h],[ox+w,oy],[ox,oy]],c[0])+poly([[ox+w,oy-h],[ox+w+dx,oy-h-dx],[ox+w+dx,oy-dx],[ox+w,oy]],c[2]);
+if(el.dataset.ghost)o+='<path d="M90 100H240V250H90Z M90 100L150 40H300L240 100 M300 40V190L240 250" style="fill:none;stroke:var(--mut);stroke-width:1.5;stroke-dasharray:5 4"/>';
+o+='<text x="'+(ox+w/2)+'" y="'+(oy-h/2+5)+'" text-anchor="middle" style="font-size:15px;font-weight:700;fill:var(--fg)">Almacenamiento</text>';
+o+=tx(ox+w/2,oy+26,L[0],K[0],'middle')+tx(ox-10,oy-h/2+6,L[1],K[1],'end')+tx(ox+w+dx/2+10,oy-dx/2+6,L[2],K[2],'start');
+el.innerHTML=o+'</svg>'});
+r();
+</script>
+</body>
+</html>
